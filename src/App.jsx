@@ -8,6 +8,15 @@ import { useState } from "react";
 
 function App() {
   const [noteArr, setNoteArr] = useState([]);
+
+  function deleteNote(id) {
+    setNoteArr((prevArr) => {
+      return prevArr.filter((note, index) => {
+        return index !== id;
+      });
+    });
+  }
+
   return (
     <div className="App">
       <Header />
@@ -19,6 +28,7 @@ function App() {
             id={index}
             title={note.title}
             content={note.content}
+            deleteNote={deleteNote}
           />
         );
       })}
